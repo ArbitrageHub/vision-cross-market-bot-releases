@@ -22,7 +22,7 @@ set -euo pipefail
 
 # --- Fixed, non-secret config -----------------------------------------------
 RELEASES_REPO="ArbitrageHub/vision-cross-market-bot-releases"                # ArbitrageHub/vision-cross-market-bot-releases — filled in before publishing
-CENTRAL_SERVICE_URL="https://vision-arb.com/arbvision/api"     # the operator's central service — not secret, same for every customer
+CENTRAL_SERVICE_URL="https://vision-arb.com/arbvision/central"     # the operator's central service — not secret, same for every customer
 
 INSTALL_DIR="${INSTALL_DIR:-$HOME/arbvision}"
 
@@ -40,7 +40,15 @@ if [[ -z "$LICENSE_KEY" ]]; then
   exit 1
 fi
 
-if [[ "$RELEASES_REPO" == "ArbitrageHub/vision-cross-market-bot-releases" || "$CENTRAL_SERVICE_URL" == "https://vision-arb.com/arbvision/api" ]]; then
+# Deliberately NOT a literal "== ArbitrageHub/vision-cross-market-bot-releases" comparison: CI's sed
+# substitutes every occurrence of that exact literal text in this file,
+# including inside this guard itself — an equality check against the
+# literal token gets rewritten right along with the real placeholder use
+# above and then always compares the (now-substituted) value to itself,
+# permanently self-defeating the guard. Matching on "still contains __"
+# instead survives the substitution: real values never contain a double
+# underscore, an un-rendered placeholder always does.
+if [[ "$RELEASES_REPO" == *"__"* || "$CENTRAL_SERVICE_URL" == *"__"* ]]; then
   echo "This script's placeholders were never filled in before publishing — refusing to run." >&2
   echo "(This means the operator hasn't finished the release setup yet.)" >&2
   exit 1

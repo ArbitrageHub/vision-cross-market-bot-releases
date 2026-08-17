@@ -16,8 +16,13 @@ Install it like any other app and open it. macOS Gatekeeper may say the
 app is damaged because the build is unsigned — that is expected; support
 will tell you how to open it.
 
-In-app **Settings → Update** refreshes the shared server, not this
-installer. New desktop versions always come from the releases page.
+In the desktop app, **Settings** shows this installer's version. If a
+newer GitHub release exists, **Update** downloads the installer (progress
+bar), opens it, then quits so you can finish installing and reopen.
+The web UI at `/arbvision/` cannot replace itself with an `.exe` — use
+the desktop app, or download from the releases page.
+
+The in-app Update button does **not** update the shared server.
 
 ## 2. Log in
 

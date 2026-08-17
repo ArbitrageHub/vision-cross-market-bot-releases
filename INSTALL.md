@@ -5,7 +5,7 @@ shared production backend. Your license key is your account.
 
 ## 1. Install the desktop app
 
-Download **v0.2.1** (or newer) for your OS from the [releases page](
+Download **v0.2.2** (or newer) for your OS from the [releases page](
 https://github.com/ArbitrageHub/vision-cross-market-bot-releases/releases):
 
 - **Windows** — the `.msi` or `.exe`
@@ -44,5 +44,5 @@ the shared backend, scoped to your license — not in a file on your PC.
 - **Can't reach the server**: confirm Server URL is
   `https://vision-arb.com/arbvision/api` and that you are online.
 - **No Chromium window / PS3838 stays offline**: you need desktop
-  **0.2.1+**, and the app must stay open. Re-login if the license was
+  **0.2.2+**, and the app must stay open. Re-login if the license was
   entered in an older installer.
